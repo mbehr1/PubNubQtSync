@@ -342,6 +342,8 @@ void pubnub_qt::set_ssl_options(ssl_opts options)
 pubnub_res pubnub_qt::finish(QByteArray const &data, int http_code)
 {
     if ((unsigned)data.size() >= sizeof d_context->http_reply) {
+        qDebug() << "finish PNR_IO_ERROR" << data.size() << d_context->http_reply;
+
         return PNR_IO_ERROR;
     }
 
@@ -350,7 +352,7 @@ pubnub_res pubnub_qt::finish(QByteArray const &data, int http_code)
     memcpy(d_context->http_reply, data.data(), data.size());
     d_context->http_reply[d_context->http_buf_len] = '\0';
 
-    qDebug() << "finish('" << d_context->http_reply << "')";
+    //qDebug() << "finish('" << d_context->http_reply << "')";
     
     switch (d_trans) {
     case PBTT_SUBSCRIBE:

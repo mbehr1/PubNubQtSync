@@ -42,7 +42,9 @@
  * instead, #PNR_FORMAT_ERROR will be reported. Specifically, this may
  * cause lost messages returned by subscribe if too many too large
  * messages got queued on the Pubnub server. */
-#define PUBNUB_REPLY_MAXLEN 2048
+//#define PUBNUB_REPLY_MAXLEN 2048
+#define PUBNUB_REPLY_MAXLEN (1024*64)
+
 
 /** This is the URL of the Pubnub server. Change only for testing
     purposes.
